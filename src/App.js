@@ -1,25 +1,51 @@
-import logo from './logo.svg';
-import './App.css';
+import './style.css';
+import React from "react";
+import Game from "./Game";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default function App() {
+    const [change, setChange] = React.useState(true)
+
+    function changer() {
+        setChange(false)
+    }
+
+    const [questions, setQuestions] = React.useState([])
+
+    React.useEffect(() => {
+        fetch('https://opentdb.com/api.php?amount=7&type=multiple')
+            .then(res => res.json())
+            .then(data => setQuestions(data.results))
+    }, [])
+
+    const a = questions.length
+    
+    const qdata = questions.map(item => {
+        return (
+            <Game
+                question = {item.question}
+                answer = {item.correct_answer}
+                wrongAns = {item.incorrect_answers}
+                length = {a}
+            />
+        )
+    })
+
+    function reload(){
+        window.location.reload()
+    }
+    
+    return (
+        <div className="container">
+            {change && <div id = 'intro'>
+                <h1 id = 'heading'>Quizical</h1>
+                <p id = 'tagline'>work your brains out</p>
+                <button onClick = {changer} id = 'start'>Start quiz</button>
+            </div>}
+            {!change && qdata}
+            {!change && <div id = 'rediv'>
+                <button onClick = {reload} id = 'newgame'>New Game</button>
+            </div>}
+        </div>
+        
+    )
 }
-
-export default App;
