@@ -161,7 +161,7 @@ body {
     align-items: center;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 1000px) {
     #optionDiv {
       display: flex;
       flex-direction: column;
