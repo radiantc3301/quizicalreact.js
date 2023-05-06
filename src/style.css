@@ -162,6 +162,29 @@ body {
 }
 
 @media screen and (max-width: 1000px) {
+    #intro{
+        font-size: 5rem;
+    }
+    #start{
+        font-size: 4rem;
+        width: 500px!important;
+        height: 150px;
+        border-radius: 100px;
+    }
+    #question{
+        font-size: 4rem;
+    }
+    .options{
+        font-size: 3rem;
+        border-radius: 50px;
+    }
+    #newgame{
+        font-size: 3rem;
+        height: 100px;
+        background-color:  rgb(140, 140, 186);
+        color: white;
+        border-radius: 50px;
+    }
     #optionDiv {
       display: flex;
       flex-direction: column;
