@@ -2,17 +2,17 @@ import React from 'react'
 
 export default function Game(props) {
     const [count, setCount] = React.useState(0)
-    
+
     const [active1, setActive1] = React.useState(false);
     const [active2, setActive2] = React.useState(false);
     const [active3, setActive3] = React.useState(false);
     const [active4, setActive4] = React.useState(false);
-    
+
     const randNum = Math.floor(Math.random() * 4)
     let newArr = props.wrongAns
     newArr.push(randNum)
 
-    (!active1 && !active2 && !active3 && !active4) && newArr.splice(randNum, 0, props.answer)
+    {(!active1 && !active2 && !active3 && !active4) && newArr.splice(randNum, 0, props.answer)}
 
     function refactorString(string){ //to resolve problem in the question 
         const result = string.replaceAll('&#039;',"'")
@@ -20,7 +20,7 @@ export default function Game(props) {
         const resultnew = resultNew.replaceAll('&rsquo;', "'")
         return(resultnew)
     }
-    
+
     function o1(){
         setActive1(true);
         if(newArr[4] === 0){
@@ -68,7 +68,7 @@ export default function Game(props) {
         backgroundColor: active2 && newArr[4] === 1 ? '#7afa78' : active2 && newArr[4] !== 1 ? 'red' : count === -1 && newArr[4] === 1 ? '#7afa78' : 'white',
         color: active2 && newArr[4] === 1 ? 'white' : active2 && newArr[4] !== 1 ? 'white' : count === -1 && newArr[4] === 1 ? 'white' : 'rgb(98, 98, 98)' 
     }
-    
+
     const style3 = {
         backgroundColor: active3 && newArr[4] === 2 ? '#7afa78' : active3 && newArr[4] !== 2 ? 'red' : count === -1 && newArr[4] === 2 ? '#7afa78' : 'white',
         color: active3 && newArr[4] === 2 ? 'white' : active3 && newArr[4] !== 2 ? 'white' : count === -1 && newArr[4] === 2 ? 'white' : 'rgb(98, 98, 98)' 
@@ -94,4 +94,3 @@ export default function Game(props) {
         </div>
     )
 }
-
